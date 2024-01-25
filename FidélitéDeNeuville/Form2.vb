@@ -25,7 +25,7 @@ Public Class Form2
                     ' Ajouter le client dans le fichier CSV
                     Dim out As IO.StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(path, True)
                     If (CheckBox1.Checked = True) Then
-                        out.WriteLine(TextBox1.Text + ";" + TextBox2.Text + ";0" + ";" + DateTimePicker1.Value)
+                        out.WriteLine(TextBox1.Text + ";" + TextBox2.Text + ";0" + ";" + MaskedTextBox1.Text)
                     Else
                         out.WriteLine(TextBox1.Text + ";" + TextBox2.Text + ";0")
                     End If
@@ -37,7 +37,7 @@ Public Class Form2
             Else
                 Dim out As IO.StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(path, True)
                 If (CheckBox1.Checked = True) Then
-                    out.WriteLine(TextBox1.Text + ";" + TextBox2.Text + ";0" + ";" + DateTimePicker1.Value)
+                    out.WriteLine(TextBox1.Text + ";" + TextBox2.Text + ";0" + ";" + MaskedTextBox1.Text)
                 Else
                     out.WriteLine(TextBox1.Text + ";" + TextBox2.Text + ";0")
                 End If
@@ -51,6 +51,6 @@ Public Class Form2
     End Sub
 
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
-        DateTimePicker1.Enabled = Not DateTimePicker1.Enabled
+        MaskedTextBox1.Enabled = Not MaskedTextBox1.Enabled
     End Sub
 End Class
