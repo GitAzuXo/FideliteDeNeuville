@@ -27,7 +27,7 @@ Public Class Form2
                     If (CheckBox1.Checked = True) Then
                         out.WriteLine(TextBox1.Text + ";" + TextBox2.Text + ";0" + ";" + MaskedTextBox1.Text)
                     Else
-                        out.WriteLine(TextBox1.Text + ";" + TextBox2.Text + ";0")
+                        out.WriteLine(TextBox1.Text + ";" + TextBox2.Text + ";0;00/00/0000")
                     End If
                     out.Close()
                     MsgBox("Client enregistré avec succès !", MsgBoxStyle.Information)
@@ -39,7 +39,7 @@ Public Class Form2
                 If (CheckBox1.Checked = True) Then
                     out.WriteLine(TextBox1.Text + ";" + TextBox2.Text + ";0" + ";" + MaskedTextBox1.Text)
                 Else
-                    out.WriteLine(TextBox1.Text + ";" + TextBox2.Text + ";0")
+                    out.WriteLine(TextBox1.Text + ";" + TextBox2.Text + ";0;00/00/0000")
                 End If
                 out.Close()
                 MsgBox("Client enregistré avec succès !", MsgBoxStyle.Information)

@@ -20,15 +20,51 @@ Public Class Form1
                     parser.TextFieldType = FieldType.Delimited
                     parser.SetDelimiters(";")
                     While Not parser.EndOfData
-                        Dim fields As String() = parser.ReadFields()
+                        Dim currentLine As String = parser.ReadLine()
+                        Dim fields As String() = currentLine.Split(";")
+                        Dim completelist As New List(Of String)
+                        For j As Integer = 0 To 1
+                            completelist.Add(fields(j))
+                        Next
                         If fields(0) = TextBox3.Text AndAlso fields(1) = TextBox2.Text Then
-                            fields(2) = price + fields(2)
+                            fields(2) = (CLng(fields(2)) + price).ToString()
                             Label4.Text = fields(2)
-                            lines.Add(fields(0) + ";" + fields(1) + ";" + fields(2) + ";" + fields(3))
-                        Else
-                            lines.Add(parser.ReadLine)
-                            MsgBox("")
+                            If fields(2) >= 400 Then
+                                fields(2) -= 400
+                                Label4.Text = fields(2)
+                                completelist.Add(fields(2))
+                                For j As Integer = 3 To fields.Length - 1
+                                    completelist.Add(fields(j))
+                                Next
+                                MsgBox("Votre client gagne un bon de 20€ pour la prochaine fois", MsgBoxStyle.Information, "Gain bon")
+                                completelist.Add("Bon de 20€")
+                            ElseIf fields(2) >= 200 Then
+                                fields(2) -= 200
+                                Label4.Text = fields(2)
+                                completelist.Add(fields(2))
+                                For j As Integer = 3 To fields.Length - 1
+                                    completelist.Add(fields(j))
+                                Next
+                                MsgBox("Votre client gagne un bon de 10€ pour la prochaine fois", MsgBoxStyle.Information, "Gain bon")
+                                completelist.Add("Bon de 10€")
+                            ElseIf fields(2) >= 100 Then
+                                fields(2) -= 100
+                                Label4.Text = fields(2)
+                                completelist.Add(fields(2))
+                                For j As Integer = 3 To fields.Length - 1
+                                    completelist.Add(fields(j))
+                                Next
+                                MsgBox("Votre client gagne un bon de 5€ pour la prochaine fois", MsgBoxStyle.Information, "Gain bon")
+                                completelist.Add("Bon de 5€")
+                            Else
+                                completelist.Add(fields(2))
+                                For j As Integer = 3 To fields.Length - 1
+                                    completelist.Add(fields(j))
+                                Next
+                            End If
+                            currentLine = String.Join(";", completelist)
                         End If
+                        lines.Add(currentLine)
                     End While
                 End Using
             End If
@@ -56,6 +92,7 @@ Public Class Form1
                         MsgBox("Client chargé avec succès !", MsgBoxStyle.Information)
                         TextBox1.Text = fields(0) + " " + fields(1)
                         Label4.Text = fields(2)
+                        Button4.Enabled = True
                     End If
                 End While
             End Using
@@ -63,5 +100,9 @@ Public Class Form1
                 MsgBox("Client non trouvé !", MsgBoxStyle.Critical, "Erreur")
             End If
         End If
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Form3.Show()
     End Sub
 End Class

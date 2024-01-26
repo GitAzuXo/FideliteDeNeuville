@@ -28,6 +28,8 @@ Partial Class Form1
         Button1 = New Button()
         Button2 = New Button()
         GroupBox1 = New GroupBox()
+        Button4 = New Button()
+        Label7 = New Label()
         Label4 = New Label()
         TextBox1 = New TextBox()
         GroupBox2 = New GroupBox()
@@ -93,18 +95,40 @@ Partial Class Form1
         ' 
         ' GroupBox1
         ' 
+        GroupBox1.Controls.Add(Button4)
+        GroupBox1.Controls.Add(Label7)
         GroupBox1.Controls.Add(Label4)
         GroupBox1.Controls.Add(TextBox1)
         GroupBox1.Controls.Add(Label2)
         GroupBox1.Controls.Add(Label3)
         GroupBox1.Location = New Point(69, 158)
-        GroupBox1.Margin = New Padding(6, 6, 6, 6)
+        GroupBox1.Margin = New Padding(6)
         GroupBox1.Name = "GroupBox1"
-        GroupBox1.Padding = New Padding(6, 6, 6, 6)
-        GroupBox1.Size = New Size(371, 213)
+        GroupBox1.Padding = New Padding(6)
+        GroupBox1.Size = New Size(371, 263)
         GroupBox1.TabIndex = 5
         GroupBox1.TabStop = False
         GroupBox1.Text = "Client chargé"
+        ' 
+        ' Button4
+        ' 
+        Button4.Enabled = False
+        Button4.Location = New Point(131, 197)
+        Button4.Name = "Button4"
+        Button4.Size = New Size(92, 46)
+        Button4.TabIndex = 8
+        Button4.Text = "Voir"
+        Button4.UseVisualStyleBackColor = True
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Location = New Point(10, 204)
+        Label7.Margin = New Padding(4, 0, 4, 0)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(114, 32)
+        Label7.TabIndex = 7
+        Label7.Text = "Coupons:"
         ' 
         ' Label4
         ' 
@@ -121,7 +145,7 @@ Partial Class Form1
         ' 
         TextBox1.Enabled = False
         TextBox1.Location = New Point(163, 66)
-        TextBox1.Margin = New Padding(6, 6, 6, 6)
+        TextBox1.Margin = New Padding(6)
         TextBox1.Name = "TextBox1"
         TextBox1.Size = New Size(182, 39)
         TextBox1.TabIndex = 6
@@ -135,9 +159,9 @@ Partial Class Form1
         GroupBox2.Controls.Add(TextBox3)
         GroupBox2.Controls.Add(Label6)
         GroupBox2.Location = New Point(494, 115)
-        GroupBox2.Margin = New Padding(6, 6, 6, 6)
+        GroupBox2.Margin = New Padding(6)
         GroupBox2.Name = "GroupBox2"
-        GroupBox2.Padding = New Padding(6, 6, 6, 6)
+        GroupBox2.Padding = New Padding(6)
         GroupBox2.Size = New Size(371, 256)
         GroupBox2.TabIndex = 6
         GroupBox2.TabStop = False
@@ -146,7 +170,7 @@ Partial Class Form1
         ' Button3
         ' 
         Button3.Location = New Point(115, 194)
-        Button3.Margin = New Padding(6, 6, 6, 6)
+        Button3.Margin = New Padding(6)
         Button3.Name = "Button3"
         Button3.Size = New Size(139, 49)
         Button3.TabIndex = 9
@@ -230,5 +254,7 @@ Partial Class Form1
     Friend WithEvents Label5 As Label
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents Label6 As Label
+    Friend WithEvents Button4 As Button
+    Friend WithEvents Label7 As Label
 
 End Class
