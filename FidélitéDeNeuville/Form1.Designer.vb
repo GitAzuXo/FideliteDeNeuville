@@ -38,6 +38,7 @@ Partial Class Form1
         Label5 = New Label()
         TextBox3 = New TextBox()
         Label6 = New Label()
+        Button5 = New Button()
         GroupBox1.SuspendLayout()
         GroupBox2.SuspendLayout()
         SuspendLayout()
@@ -153,6 +154,7 @@ Partial Class Form1
         ' 
         ' GroupBox2
         ' 
+        GroupBox2.Controls.Add(Button5)
         GroupBox2.Controls.Add(Button3)
         GroupBox2.Controls.Add(TextBox2)
         GroupBox2.Controls.Add(Label5)
@@ -169,7 +171,7 @@ Partial Class Form1
         ' 
         ' Button3
         ' 
-        Button3.Location = New Point(115, 194)
+        Button3.Location = New Point(42, 195)
         Button3.Margin = New Padding(6)
         Button3.Name = "Button3"
         Button3.Size = New Size(139, 49)
@@ -215,6 +217,15 @@ Partial Class Form1
         Label6.TabIndex = 5
         Label6.Text = "Nom :"
         ' 
+        ' Button5
+        ' 
+        Button5.Location = New Point(190, 196)
+        Button5.Name = "Button5"
+        Button5.Size = New Size(150, 46)
+        Button5.TabIndex = 7
+        Button5.Text = "Liste"
+        Button5.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(13F, 32F)
@@ -256,5 +267,6 @@ Partial Class Form1
     Friend WithEvents Label6 As Label
     Friend WithEvents Button4 As Button
     Friend WithEvents Label7 As Label
+    Friend WithEvents Button5 As Button
 
 End Class
