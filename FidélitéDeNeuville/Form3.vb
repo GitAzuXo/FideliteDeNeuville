@@ -52,11 +52,11 @@ Public Class Form3
                     Dim fields As String() = currentLine.Split(";")
                     If fields.Length >= 2 AndAlso fields(0) = Form1.TextBox3.Text AndAlso fields(1) = Form1.TextBox2.Text Then
                         Dim completelist As New List(Of String)
-                        If fields.Length <= 4 Then
+                        If fields.Length <= 7 Then
                             Me.Close()
                             MsgBox("Ce client n'a aucun coupon", MsgBoxStyle.Critical)
                         End If
-                        For j As Integer = 4 To fields.Length - 1
+                        For j As Integer = 7 To fields.Length - 1
                             completelist.Add(fields(j))
                         Next
                         For i As Integer = 0 To completelist.Count - 1

@@ -33,19 +33,21 @@ Partial Class Form4
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridView1.Dock = DockStyle.Fill
         DataGridView1.Location = New Point(0, 0)
+        DataGridView1.Margin = New Padding(2, 1, 2, 1)
         DataGridView1.Name = "DataGridView1"
         DataGridView1.ReadOnly = True
         DataGridView1.RowHeadersWidth = 82
-        DataGridView1.Size = New Size(913, 588)
+        DataGridView1.Size = New Size(998, 575)
         DataGridView1.TabIndex = 0
         ' 
         ' Form4
         ' 
-        AutoScaleDimensions = New SizeF(13F, 32F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(913, 588)
+        ClientSize = New Size(998, 575)
         Controls.Add(DataGridView1)
         FormBorderStyle = FormBorderStyle.FixedSingle
+        Margin = New Padding(2, 1, 2, 1)
         Name = "Form4"
         Text = "Clients"
         CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()

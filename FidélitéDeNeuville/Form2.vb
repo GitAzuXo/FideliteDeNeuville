@@ -2,10 +2,19 @@
 
 Public Class Form2
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If (TextBox1.Text.Length = 0 And TextBox2.Text.Length = 0) Then
+        If (TextBox1.Text.Length = 0 Or TextBox2.Text.Length = 0) Then
             MsgBox("Vous ne pouvez pas enregister un client vierge", MsgBoxStyle.Critical)
         Else
             Dim path As String = "C:\\Users\\Public\\clients.csv"
+            If TextBox3.Text = "" Then
+                TextBox3.Text = "example@dn.fr"
+            End If
+            If String.IsNullOrWhiteSpace(MaskedTextBox2.Text) Then
+                MaskedTextBox2.Text = "00 00 00 00 00"
+            End If
+            If TextBox4.Text = "" Then
+                TextBox4.Text = "Pas d'adresse"
+            End If
             If Dir(path) <> "" Then
                 Dim clientExists As Boolean = False
                 Using parser As New TextFieldParser(path)
@@ -25,9 +34,9 @@ Public Class Form2
                     ' Ajouter le client dans le fichier CSV
                     Dim out As IO.StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(path, True)
                     If (CheckBox1.Checked = True) Then
-                        out.WriteLine(TextBox1.Text + ";" + TextBox2.Text + ";0" + ";" + MaskedTextBox1.Text)
+                        out.WriteLine(TextBox1.Text + ";" + TextBox2.Text + ";0" + ";" + MaskedTextBox1.Text + ";" + MaskedTextBox2.Text + ";" + TextBox3.Text + ";" + TextBox4.Text)
                     Else
-                        out.WriteLine(TextBox1.Text + ";" + TextBox2.Text + ";0;00/00/0000")
+                        out.WriteLine(TextBox1.Text + ";" + TextBox2.Text + ";0;00/00/0000;" + MaskedTextBox2.Text + ";" + TextBox3.Text + ";" + TextBox4.Text)
                     End If
                     out.Close()
                     MsgBox("Client enregistré avec succès !", MsgBoxStyle.Information)
@@ -37,9 +46,9 @@ Public Class Form2
             Else
                 Dim out As IO.StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(path, True)
                 If (CheckBox1.Checked = True) Then
-                    out.WriteLine(TextBox1.Text + ";" + TextBox2.Text + ";0" + ";" + MaskedTextBox1.Text)
+                    out.WriteLine(TextBox1.Text + ";" + TextBox2.Text + ";0" + ";" + MaskedTextBox1.Text + ";" + MaskedTextBox2.Text + ";" + TextBox3.Text + ";" + TextBox4.Text)
                 Else
-                    out.WriteLine(TextBox1.Text + ";" + TextBox2.Text + ";0;00/00/0000")
+                    out.WriteLine(TextBox1.Text + ";" + TextBox2.Text + ";0;00/00/0000;" + MaskedTextBox2.Text + ";" + TextBox3.Text + ";" + TextBox4.Text)
                 End If
                 out.Close()
                 MsgBox("Client enregistré avec succès !", MsgBoxStyle.Information)

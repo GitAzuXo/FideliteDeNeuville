@@ -8,6 +8,9 @@ Public Class Form4
         dt.Columns.Add("Prénom")
         dt.Columns.Add("Points")
         dt.Columns.Add("Date de Naissance")
+        dt.Columns.Add("Téléphone")
+        dt.Columns.Add("Mail")
+        dt.Columns.Add("Adresse")
 
         ' Lire le fichier CSV
         Using parser As New TextFieldParser(path)
@@ -20,7 +23,7 @@ Public Class Form4
 
                 ' Ajouter la ligne au DataTable
                 If fields.Length >= 2 Then
-                    dt.Rows.Add(fields(0), fields(1), fields(2), fields(3))
+                    dt.Rows.Add(fields(0), fields(1), fields(2), fields(3), fields(4), fields(5), fields(6))
                 End If
             End While
         End Using

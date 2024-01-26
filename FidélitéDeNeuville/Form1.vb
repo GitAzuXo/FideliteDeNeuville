@@ -102,36 +102,14 @@ Public Class Form1
                         Dim today As String = DateTime.Now.ToString("MM")
                         Dim anniv As String() = fields(3).Split("/")
                         Dim listcl As New ArrayList
-                        If IO.File.Exists("C:\\Users\\Public\\birth.txt") Then
-                            Dim ino As IO.StreamReader = My.Computer.FileSystem.OpenTextFileReader("C:\\Users\\Public\\birth.txt")
-                            While Not ino.EndOfStream
-                                Dim line As String = ino.ReadLine()
-                                listcl.Add(line)
-                            End While
-                            ino.Close()
-                        Else
-                            Dim pathtxt As String = "C:\Users\Public\birth.txt"
-
-                            ' Use StreamWriter to create or overwrite the file
-                            Using out As IO.StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(pathtxt, False)
-                                ' No need to write anything; just opening and closing will create an empty file
-                            End Using
-                        End If
                         If anniv(1) = today Then
-                            If Not listcl.Contains(fields(0) + " " + fields(1)) Then
-                                If MsgBox("C'est le mois anniversaire de ce client, doubler ses points ?", MsgBoxStyle.YesNo, "Anniversaire") = vbYes Then
-                                    fields(2) *= 2
-                                    Dim out As IO.StreamWriter = My.Computer.FileSystem.OpenTextFileWriter("C:\\Users\\Public\\birth.txt", True)
-                                    out.WriteLine(fields(0) + " " + fields(1))
-                                    out.Close()
-                                    Label4.Text = fields(2)
-                                    completelist.Add(fields(2))
-                                    For j As Integer = 3 To fields.Length - 1
-                                        completelist.Add(fields(j))
-                                    Next
-                                Else
-                                    Exit Sub
-                                End If
+                            If MsgBox("C'est le mois anniversaire de ce client, doubler ses points ?", MsgBoxStyle.YesNo, "Anniversaire") = vbYes Then
+                                fields(2) *= 2
+                                Label4.Text = fields(2)
+                                completelist.Add(fields(2))
+                                For j As Integer = 3 To fields.Length - 1
+                                    completelist.Add(fields(j))
+                                Next
                             Else
                                 Exit Sub
                             End If
