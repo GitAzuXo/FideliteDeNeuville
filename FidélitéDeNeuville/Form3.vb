@@ -9,13 +9,13 @@ Public Class Form3
             Dim path As String = "C:\\Users\\Public\\clients.csv"
             Dim lines As New ArrayList
             If Dir(path) <> "" Then
-                Dim completelist As New List(Of String)
                 Using parser As New TextFieldParser(path)
                     parser.TextFieldType = FieldType.Delimited
                     parser.SetDelimiters(";")
                     While Not parser.EndOfData
                         Dim currentLine As String = parser.ReadLine()
                         Dim fields As String() = currentLine.Split(";")
+                        Dim completelist As New List(Of String) ' Déplacez la déclaration de completelist ici
                         If fields.Length >= 2 AndAlso fields(0) = Form1.TextBox3.Text AndAlso fields(1) = Form1.TextBox2.Text Then
                             For j As Integer = 0 To fields.Length - 1
                                 completelist.Add(fields(j))
@@ -24,11 +24,9 @@ Public Class Form3
                             currentLine = String.Join(";", completelist)
                             MsgBox("Bon consommé avec succès", MsgBoxStyle.Information, "Succès")
                         Else
-                            For j As Integer = 0 To fields.Length - 1
-                                completelist.Add(fields(j))
-                            Next
+                            completelist.AddRange(fields) ' Utilisez AddRange pour ajouter tous les champs
+                            currentLine = String.Join(";", completelist)
                         End If
-                        currentLine = String.Join(";", completelist)
                         lines.Add(currentLine)
                     End While
                 End Using
@@ -41,6 +39,7 @@ Public Class Form3
             End If
         End If
     End Sub
+
 
     Private Sub Form3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim path As String = "C:\\Users\\Public\\clients.csv"

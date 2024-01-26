@@ -57,13 +57,17 @@ Public Class Form1
                                 MsgBox("Votre client gagne un bon de 5€ pour la prochaine fois", MsgBoxStyle.Information, "Gain bon")
                                 completelist.Add("Bon de 5€")
                             Else
-                                completelist.Add(fields(2))
-                                For j As Integer = 3 To fields.Length - 1
+                                For j As Integer = 2 To fields.Length - 1
                                     completelist.Add(fields(j))
                                 Next
                             End If
-                            currentLine = String.Join(";", completelist)
+                        Else
+                            completelist.Add(fields(2))
+                            For j As Integer = 3 To fields.Length - 1
+                                completelist.Add(fields(j))
+                            Next
                         End If
+                        currentLine = String.Join(";", completelist)
                         lines.Add(currentLine)
                     End While
                 End Using
@@ -74,10 +78,6 @@ Public Class Form1
             Next
             out.Close()
         End If
-    End Sub
-
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
     End Sub
 
     Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
@@ -108,9 +108,14 @@ Public Class Form1
                                 Dim line As String = ino.ReadLine()
                                 listcl.Add(line)
                             End While
+                            ino.Close()
                         Else
-                            Dim out As IO.StreamWriter = My.Computer.FileSystem.OpenTextFileWriter("C:\\Users\\Public\\birth.txt", True)
-                            out.Close()
+                            Dim pathtxt As String = "C:\Users\Public\birth.txt"
+
+                            ' Use StreamWriter to create or overwrite the file
+                            Using out As IO.StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(pathtxt, False)
+                                ' No need to write anything; just opening and closing will create an empty file
+                            End Using
                         End If
                         If anniv(1) = today Then
                             If Not listcl.Contains(fields(0) + " " + fields(1)) Then
