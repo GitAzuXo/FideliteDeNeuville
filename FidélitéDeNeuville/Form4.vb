@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.FileIO
+﻿Imports System.IO
+Imports Microsoft.VisualBasic.FileIO
 
 Public Class Form4
     Private Sub Form4_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -47,5 +48,21 @@ Public Class Form4
             Me.Close()
             Form1.Button3_Click(Form1, e)
         End If
+    End Sub
+
+    Private Sub SauvegarderDansCSV()
+        ' Vérifier si le DataGridView a des données
+        Dim path As String = "C:\\Users\\Public\\clients.csv"
+        If DataGridView1.Rows.Count > 0 Then
+            Using writer As New System.IO.StreamWriter(path, False)
+                For Each row As DataGridViewRow In DataGridView1.Rows
+                    Dim line As String = String.Join(";", row.Cells.Cast(Of DataGridViewCell).Select(Function(cell) cell.Value))
+                    writer.WriteLine(line)
+                Next
+            End Using
+        End If
+    End Sub
+    Private Sub Form4_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        SauvegarderDansCSV()
     End Sub
 End Class
