@@ -28,17 +28,18 @@ Partial Class Form1
         Button1 = New Button()
         Button2 = New Button()
         GroupBox1 = New GroupBox()
+        Button6 = New Button()
         Button4 = New Button()
         Label7 = New Label()
         Label4 = New Label()
         TextBox1 = New TextBox()
         GroupBox2 = New GroupBox()
+        Button5 = New Button()
         Button3 = New Button()
         TextBox2 = New TextBox()
         Label5 = New Label()
         TextBox3 = New TextBox()
         Label6 = New Label()
-        Button5 = New Button()
         GroupBox1.SuspendLayout()
         GroupBox2.SuspendLayout()
         SuspendLayout()
@@ -47,12 +48,12 @@ Partial Class Form1
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 25.875F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(332, 9)
+        Label1.Location = New Point(138, 9)
         Label1.Margin = New Padding(4, 0, 4, 0)
         Label1.Name = "Label1"
-        Label1.Size = New Size(260, 92)
+        Label1.Size = New Size(636, 92)
         Label1.TabIndex = 0
-        Label1.Text = "Fidélité"
+        Label1.Text = "Programme Fidélité"
         ' 
         ' Label2
         ' 
@@ -96,6 +97,7 @@ Partial Class Form1
         ' 
         ' GroupBox1
         ' 
+        GroupBox1.Controls.Add(Button6)
         GroupBox1.Controls.Add(Button4)
         GroupBox1.Controls.Add(Label7)
         GroupBox1.Controls.Add(Label4)
@@ -106,10 +108,20 @@ Partial Class Form1
         GroupBox1.Margin = New Padding(6)
         GroupBox1.Name = "GroupBox1"
         GroupBox1.Padding = New Padding(6)
-        GroupBox1.Size = New Size(371, 263)
+        GroupBox1.Size = New Size(371, 314)
         GroupBox1.TabIndex = 5
         GroupBox1.TabStop = False
         GroupBox1.Text = "Client chargé"
+        ' 
+        ' Button6
+        ' 
+        Button6.Enabled = False
+        Button6.Location = New Point(107, 259)
+        Button6.Name = "Button6"
+        Button6.Size = New Size(150, 46)
+        Button6.TabIndex = 9
+        Button6.Text = "Ticket"
+        Button6.UseVisualStyleBackColor = True
         ' 
         ' Button4
         ' 
@@ -169,6 +181,15 @@ Partial Class Form1
         GroupBox2.TabStop = False
         GroupBox2.Text = "Recherche"
         ' 
+        ' Button5
+        ' 
+        Button5.Location = New Point(190, 196)
+        Button5.Name = "Button5"
+        Button5.Size = New Size(150, 46)
+        Button5.TabIndex = 7
+        Button5.Text = "Fichier"
+        Button5.UseVisualStyleBackColor = True
+        ' 
         ' Button3
         ' 
         Button3.Location = New Point(42, 195)
@@ -217,15 +238,6 @@ Partial Class Form1
         Label6.TabIndex = 5
         Label6.Text = "Nom :"
         ' 
-        ' Button5
-        ' 
-        Button5.Location = New Point(190, 196)
-        Button5.Name = "Button5"
-        Button5.Size = New Size(150, 46)
-        Button5.TabIndex = 7
-        Button5.Text = "Liste"
-        Button5.UseVisualStyleBackColor = True
-        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(13F, 32F)
@@ -268,5 +280,6 @@ Partial Class Form1
     Friend WithEvents Button4 As Button
     Friend WithEvents Label7 As Label
     Friend WithEvents Button5 As Button
+    Friend WithEvents Button6 As Button
 
 End Class

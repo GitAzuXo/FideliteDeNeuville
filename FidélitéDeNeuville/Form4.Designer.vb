@@ -23,6 +23,7 @@ Partial Class Form4
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         DataGridView1 = New DataGridView()
+        TextBox1 = New TextBox()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -35,23 +36,36 @@ Partial Class Form4
         DataGridView1.Location = New Point(0, 0)
         DataGridView1.Margin = New Padding(4, 2, 4, 2)
         DataGridView1.Name = "DataGridView1"
+        DataGridView1.ReadOnly = True
         DataGridView1.RowHeadersWidth = 82
-        DataGridView1.Size = New Size(1853, 1227)
+        DataGridView1.Size = New Size(1894, 1009)
         DataGridView1.TabIndex = 0
+        ' 
+        ' TextBox1
+        ' 
+        TextBox1.Anchor = AnchorStyles.Right
+        TextBox1.Location = New Point(1134, 471)
+        TextBox1.Name = "TextBox1"
+        TextBox1.Size = New Size(507, 39)
+        TextBox1.TabIndex = 1
         ' 
         ' Form4
         ' 
-        AutoScaleDimensions = New SizeF(13F, 32F)
+        AutoScaleDimensions = New SizeF(13.0F, 32.0F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1853, 1227)
+        ClientSize = New Size(1894, 1009)
+        Controls.Add(TextBox1)
         Controls.Add(DataGridView1)
         FormBorderStyle = FormBorderStyle.FixedSingle
         Margin = New Padding(4, 2, 4, 2)
         Name = "Form4"
         Text = "Clients"
+        WindowState = FormWindowState.Maximized
         CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
+        PerformLayout()
     End Sub
 
     Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents TextBox1 As TextBox
 End Class
