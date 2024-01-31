@@ -2,6 +2,8 @@
 Imports System.IO
 Imports Microsoft.VisualBasic.FileIO
 Imports System.IO.Ports
+Imports System.Text
+Imports System.Drawing.Imaging
 
 Public Class Form1
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -41,6 +43,16 @@ Public Class Form1
                                 MsgBox("Votre client gagne un bon de 20€ pour la prochaine fois", MsgBoxStyle.Information, "Gain bon")
                                 completelist.Add("Bon de 20€")
                                 CouponPrint(20)
+                            ElseIf fields(2) >= 300 Then
+                                fields(2) -= 300
+                                Label4.Text = fields(2)
+                                completelist.Add(fields(2))
+                                For j As Integer = 3 To fields.Length - 1
+                                    completelist.Add(fields(j))
+                                Next
+                                MsgBox("Votre client gagne un bon de 15€ pour la prochaine fois", MsgBoxStyle.Information, "Gain bon")
+                                completelist.Add("Bon de 15€")
+                                CouponPrint(15)
                             ElseIf fields(2) >= 200 Then
                                 fields(2) -= 200
                                 Label4.Text = fields(2)
@@ -141,7 +153,7 @@ Public Class Form1
                     lines.Add(currentLine)
                 End While
             End Using
-            If Not clientfound Then
+            If Not clientFound Then
                 MsgBox("Client non trouvé !", MsgBoxStyle.Critical, "Erreur")
             Else
                 Using out As IO.StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(path, False)
@@ -168,18 +180,27 @@ Public Class Form1
         Dim strprint As String
         Dim name As String()
         name = TextBox1.Text.Split(" ")
-        strprint = "Bilan compte fidélité de " & name(0).ToUpper & " " & name(1) & vbCrLf
+        strprint = "CABOSSES & PALETS DE LA DECOUVERTE" & vbCrLf & "(Chocolat deNeuville)" & vbCrLf
+        strprint = strprint & "83 Avenue du bac 94210 Saint Maur Des Fosses" & vbCrLf
+        strprint = strprint & "Numero Siret 83361464700026 NAF 4724Z" & vbCrLf
+        strprint = strprint & "Numero TVA FR41833614647" & vbCrLf
+        strprint = strprint & "Tel : 01 43 97 95 83" & vbCrLf
+        strprint = strprint & "Mail : laurent.paul.94@gmail.com" & vbCrLf
+        strprint = strprint & "Mobile : 06 32 63 29 16" & vbCrLf & vbCrLf
+        strprint = strprint & "Bilan compte fidelite de" & vbCrLf & name(0).ToUpper & " " & name(1) & vbCrLf
         strprint = strprint & "------------------------------" & vbCrLf
         Dim currentDate As String = DateTime.Now.ToString("dd/MM/yyyy HH:mm")
         strprint = strprint & "En date du: " & currentDate & vbCrLf
         strprint = strprint & "Solde: " & Label4.Text & vbCrLf
-        strprint = strprint & "------------------------------" & vbCrLf
-
+        strprint = strprint & "------------------------------" & vbCrLf & vbCrLf
+        strprint = strprint & "Malika et Laurent vous souhaitent une agreable journee" & vbCrLf
+        strprint = strprint & "Merci et a tres bientot" & vbCrLf
         Dim port As New SerialPort("COM2", 9600, Parity.None, 8, StopBits.One)
 
         Try
             port.Open()
-            port.WriteLine(strprint) ' Envoyer le texte formaté à l'imprimante
+            port.WriteLine(strprint)
+            SendCutCommand(port)
             port.Close()
         Catch ex As Exception
             MessageBox.Show("Erreur : " & ex.Message)
@@ -189,27 +210,44 @@ Public Class Form1
         Dim strprint As String
         Dim name As String()
         name = TextBox1.Text.Split(" ")
-        strprint = "Gain d'un coupon de réduction !" & vbCrLf
-        strprint = strprint & "-----------------------------------------------------" & vbCrLf
+        strprint = "CABOSSES & PALETS DE LA DECOUVERTE" & vbCrLf & "(Chocolat deNeuville)" & vbCrLf
+        strprint = strprint & "83 Avenue du bac 94210 Saint Maur Des Fosses" & vbCrLf
+        strprint = strprint & "Numero Siret 83361464700026 NAF 4724Z" & vbCrLf
+        strprint = strprint & "Numero TVA FR41833614647" & vbCrLf
+        strprint = strprint & "Tel : 01 43 97 95 83" & vbCrLf
+        strprint = strprint & "Mail : laurent.paul.94@gmail.com" & vbCrLf
+        strprint = strprint & "Mobile : 06 32 63 29 16" & vbCrLf & vbCrLf
+        strprint = strprint & "Gain d'un coupon de reduction !" & vbCrLf
+        strprint = strprint & "--------------------------------------" & vbCrLf
         Dim currentDate As DateTime = DateTime.Now
         Dim futureDate As DateTime = currentDate.AddMonths(3).Date
         Dim formattedDate As String = futureDate.ToString("dd/MM/yyyy")
         strprint = strprint & "Titulaire: " & name(0).ToUpper & " " & name(1) & vbCrLf
         strprint = strprint & "En date du: " & currentDate & vbCrLf
-        strprint = strprint & "Valeur du Coupon: " & valeur.ToString & "€" & vbCrLf
+        strprint = strprint & "Valeur du Coupon: " & valeur.ToString & "euros" & vbCrLf
         strprint = strprint & "" & vbCrLf
         strprint = strprint & "Attention ! Votre coupon est valable jusqu'au " & futureDate & vbCrLf
-        strprint = strprint & "-----------------------------------------------------" & vbCrLf
+        strprint = strprint & "--------------------------------------" & vbCrLf & vbCrLf
+        strprint = strprint & "Malika et Laurent vous souhaitent une agreable journee" & vbCrLf
+        strprint = strprint & "Merci et a tres bientot" & vbCrLf
 
         Dim port As New SerialPort("COM2", 9600, Parity.None, 8, StopBits.One)
 
         Try
             port.Open()
-            port.WriteLine(strprint) ' Envoyer le texte formaté à l'imprimante
+            port.WriteLine(strprint)
+            SendCutCommand(port)
             port.Close()
         Catch ex As Exception
             MessageBox.Show("Erreur : " & ex.Message)
         End Try
 
+    End Sub
+    Sub SendCutCommand(port As SerialPort)
+        ' Form Feed et commande de découpe
+        Dim cutCommand As Byte() = {&HC} ' Hexadécimal 0C
+
+        ' Envoyez la commande à l'imprimante
+        port.Write(cutCommand, 0, cutCommand.Length)
     End Sub
 End Class

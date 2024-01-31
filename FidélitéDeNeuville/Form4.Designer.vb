@@ -47,7 +47,7 @@ Partial Class Form4
         TextBox1.Location = New Point(1134, 471)
         TextBox1.Name = "TextBox1"
         TextBox1.Size = New Size(507, 39)
-        TextBox1.TabIndex = 1
+        TextBox1.TabIndex = 0
         ' 
         ' Form4
         ' 
